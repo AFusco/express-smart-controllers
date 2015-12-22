@@ -31,7 +31,7 @@ var ExpressControllers = function(router, options) {
 	this.options = options || {};
 
 	// set default value options if not provided
-	this.options.controllerPath = this.options.controllerPath || './controllers';
+	this.options.controllerPath = this.options.controllerPath || './api';
 	this.options.loginUrl = this.options.loginUrl || '/login';
 	this.options.checkAuthFn = this.options.checkAuthFn || null;
 
