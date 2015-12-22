@@ -350,7 +350,7 @@ ExpressControllers.prototype.loadControllers = function(callback) {
       if (path.basename(relativePath) === 'controller.js') {
         var controller = require(file);
         //Override controllerName with path name
-        var controller.controllerName = relativePath.split(path.sep).pop();
+        controller.controllerName = relativePath.split(path.sep).pop();
         if (controller) {
 					var controllerData = that.getControllerData(controller, relativePath);
 					that.loadExplicitRoutes(controllerData);
