@@ -346,15 +346,17 @@ ExpressControllers.prototype.loadControllers = function(callback) {
 			throw err;
 		files.forEach(function(file) {
 			var relativePath = path.relative(controllersFullPath, file).replace('\\', '/');
-			var extension = path.extname(relativePath);
-			if (extension === '.js') {
-				var controller = require(file);
-				if (controller) {
+
+      if (path.basename(relativePath) === 'controller.js') {
+        var controller = require(file);
+        //Override controllerName with path name
+        var controller.controllerName = relativePath.split(path.sep).pop();
+        if (controller) {
 					var controllerData = that.getControllerData(controller, relativePath);
 					that.loadExplicitRoutes(controllerData);
 					that.loadImplicitRoutes(controllerData);
-				}
-			}
+        }
+      }
 		});
 		if (callback && typeof(callback) === 'function')
 			callback.apply(that, [that.router]);
